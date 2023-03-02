@@ -1,0 +1,5 @@
+echo "Remote script '{{script_name}}' started"
+
+echo "Hello World!"
+
+echo "Remote script '{{script_name}}' finished"

@@ -2,20 +2,16 @@
 
 return [
 
-    'key_path' => env('REMOTE_KEY_PATH'),
+    'auth' => [
 
-    'logger' => env('REMOTE_KEY_PATH', true),
+        'key_path' => env('REMOTE_KEY_PATH', storage_path('id_rsa')),
 
-    'scp' => [
-        'key_path' => env('REMOTE_SCP_KEY_PATH'),
+        'username' => env('REMOTE_USERNAME', 'root'),
 
-        'logger' => (bool)env('REMOTE_SSH_DEBUG_LOG', true),
     ],
 
-    'ssh' => [
-        'key_path' => env('REMOTE_SSH_KEY_PATH'),
+    'scripts_path' => app_path().'/Scripts',
 
-        'logger' => (bool)env('REMOTE_SSH_DEBUG_LOG', true),
-    ]
+    'log_channel' => env('REMOTE_LOG_CHANNEL'),
 
 ];
