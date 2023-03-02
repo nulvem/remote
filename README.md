@@ -25,7 +25,7 @@ artisan vendor:publish --provider="Nulvem\Remote\RemoteServiceProvider"
 
 ### Private key file
 
-You can put your private key anywhere in the project, just point the key path in the configuration file `config/remote.php`:
+You can put your private key anywhere in the project, just point the key path in the `/config/remote.php` file:
 
 ```php
 [
@@ -53,7 +53,7 @@ If you want the log of all executions to be saved, just add the desired channel 
 REMOTE_LOG_CHANNEL=remote
 ```
 
-It is recommended to add the following channel in your configuration file `config/logging.php`:
+It is recommended to add the following channel in the `/config/logging.php` file:
 
 ```php
 [
@@ -82,7 +82,7 @@ php artisan make:remote-script hello-world
 
 A file called `hello-world.blade.php` will be generated inside the `/app/Scripts` folder.
 
-If you want to change the default scripts folder, just change the `scripts_path` property inside the configuration file.
+If you want to change the default scripts folder, just change the `scripts_path` property inside the `/config/remote.php` file.
 
 #### Executing scripts
 
