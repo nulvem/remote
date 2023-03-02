@@ -3,6 +3,7 @@
 namespace Nulvem\Remote\Connections;
 
 use Nulvem\Remote\Client\Connection;
+use Nulvem\Remote\Client\SshOutput;
 
 class Ssh
 {
@@ -24,13 +25,15 @@ class Ssh
         string $server,
     ): static
     {
+        $this->server = $server;
+
         return $this;
     }
 
     public function run(
         string $script,
         array  $data = [],
-    )
+    ): SshOutput
     {
         $script = $this->compileScript(
             script: $script,
@@ -41,7 +44,7 @@ class Ssh
             server: $this->server
         ));
 
-        $client->exec(
+        return $client->exec(
             script: $script
         );
     }

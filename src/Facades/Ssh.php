@@ -11,6 +11,6 @@ class Ssh extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \Nulvem\Remote\Clients\Ssh::class;
+        return \Nulvem\Remote\Connections\Ssh::class;
     }
 }

@@ -11,6 +11,6 @@ class Scp extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \Nulvem\Remote\Clients\Scp::class;
+        return \Nulvem\Remote\Connections\Scp::class;
     }
 }

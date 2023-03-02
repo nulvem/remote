@@ -24,13 +24,17 @@ class Connection
 
     public function exec(
         string $script,
-    ): void
+    ): SshOutput
     {
         $output = $this->ssh->exec($script);
 
         if ($channel = config('remote.log_channel')) {
             Log::channel($channel)->info("Output from ip: $this->server\n\n$output");
         }
+
+        return new SshOutput(
+            output: $output
+        );
     }
 
     private function keyContent(): string

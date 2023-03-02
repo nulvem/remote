@@ -124,14 +124,18 @@ $connection = Remote::ssh('0.0.0.0')->run('hello-world');
 
 $connection->output();
 
-$connection->successfull();
+$connection->success();
 
 $connection->failed();
 ```
 
+> **Warning**
+>
+> Do not remove the last line `Remote script 'SCRIPT_NAME' finished`, if removed the `success()` and `failed()` methods of the output will not work correctly.
+
 ### SCP
 
-...
+SCP is not implemented yet.
 
 ## Security
 
