@@ -131,7 +131,7 @@ $connection->failed();
 
 > **Warning**
 >
-> Do not remove the last line `Remote script 'SCRIPT_NAME' finished`, if removed the `success()` and `failed()` methods of the output will not work correctly.
+> Do not remove the last line `Remote script 'SCRIPT_NAME' finished` on script files, if removed the `success()` and `failed()` methods of the output will not work correctly.
 
 ### SCP
 
