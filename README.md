@@ -1,11 +1,10 @@
 # Remote SCP/SSH for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/nulvem/remote.svg?style=flat-square)](https://packagist.org/packages/nulvem/remote)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/nulvem/remote/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/nulvem/remote/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/nulvem/remote/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/nulvem/remote/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/nulvem/remote.svg?style=flat-square)](https://packagist.org/packages/nulvem/remote)
+[![Total Downloads](https://img.shields.io/packagist/dt/nulvem/remote.svg)](https://packagist.org/packages/nulvem/remote)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/nulvem/remote.svg)](https://packagist.org/packages/nulvem/remote)
+[![License](https://img.shields.io/packagist/l/nulvem/remote.svg)](https://packagist.org/packages/nulvem/remote)
 
-Project description...
+Remote is an SSH and SCP connection package for the Laravel Framework. Our elegant solution simplifies even complex tasks with familiar Blade syntax. Experience easy, secure connections without tedious setup.
 
 ## Installation
 
