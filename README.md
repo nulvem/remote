@@ -1,10 +1,10 @@
-# Remote SCP/SSH for Laravel
+# Remote SFTP/SSH for Laravel
 
 [![Total Downloads](https://img.shields.io/packagist/dt/nulvem/remote.svg)](https://packagist.org/packages/nulvem/remote)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nulvem/remote.svg)](https://packagist.org/packages/nulvem/remote)
 [![License](https://img.shields.io/packagist/l/nulvem/remote.svg)](https://packagist.org/packages/nulvem/remote)
 
-Remote is an SSH and SCP connection package for the Laravel Framework. Our elegant solution simplifies even complex tasks with familiar Blade syntax. Experience easy, secure connections without tedious setup.
+Remote is an SSH and SFTP connection package for the Laravel Framework. Our elegant solution simplifies even complex tasks with familiar Blade syntax. Experience easy, secure connections without tedious setup.
 
 ## Installation
 
@@ -85,53 +85,38 @@ If you want to change the default scripts folder, just change the `scripts_path`
 
 #### Executing scripts
 
-There are two methods of running an SSH script:
-
 ```php
 use Nulvem\Remote\Facades\Remote;
-use Nulvem\Remote\Facades\Ssh;
 
-Remote::ssh(
-    host: '0.0.0.0'
-)->run(script: 'hello-world');
+$remote = Remote::ssh(host: '0.0.0.0');
 
-Ssh::on(
-    host: '0.0.0.0'
-)->run(script: 'hello-world');
+$remote->run(script: 'hello-world');
 ```
 
 If necessary, it is possible to change the default host port:
 
 ```php
 use Nulvem\Remote\Facades\Remote;
-use Nulvem\Remote\Facades\Ssh;
 
-Remote::ssh(
+$remote = Remote::ssh(
     host: '0.0.0.0',
     port: 2000
-)->run(script: 'hello-world');
+);
 
-Ssh::on(
-    host: '0.0.0.0',
-    port: 2000
-)->run(script: 'hello-world');
+$remote->run(script: 'hello-world');
 ```
 
 There is no default timeout, scripts may run forever, if necessary, it is possible to change the default host timeout:
 
 ```php
 use Nulvem\Remote\Facades\Remote;
-use Nulvem\Remote\Facades\Ssh;
 
-Remote::ssh(
+$remote = Remote::ssh(
     host: '0.0.0.0',
     timeout: 20
-)->run(script: 'hello-world');
+);
 
-Ssh::on(
-    host: '0.0.0.0',
-    timeout: 20
-)->run(script: 'hello-world');
+$remote->run(script: 'hello-world');
 ```
 
 If necessary, it is possible to pass any parameters to the SSH script:
@@ -147,38 +132,100 @@ echo "Remote script 'install' finished"
 ```
 
 ```php
-Remote::ssh(
-    host: '0.0.0.0'
-)->run(
+$remote = Remote::ssh(host: '0.0.0.0');
+
+$remote->run(
     script: 'hello-world',
     data: [
         'name' => 'John Doe',
         'dir' => '/var/www/html'
     ]
-);
+)
 ```
 
-#### Scripts outputs
+#### SSH output
 
 ```php
-$connection = Remote::ssh(
-    host: '0.0.0.0'
-)->run(script: 'hello-world');
+$remote = Remote::ssh(host: '0.0.0.0');
 
-$connection->output();
+$execution = $remote->run(script: 'hello-world');
 
-$connection->success();
+$execution->output();
 
-$connection->failed();
+$execution->success();
+
+$execution->failed();
 ```
 
 > **Warning**
 >
 > Do not remove the last line `Remote script 'SCRIPT_NAME' finished` on script files, if removed the `success()` and `failed()` methods of the output will not work correctly.
 
-### SCP
+### SFTP
 
-SCP is not implemented yet.
+#### Downloading files
+
+```php
+use Nulvem\Remote\Facades\Remote;
+
+$remote = Remote::sftp(host: '0.0.0.0');
+
+$remote->get(
+    from: '/root/sample.json',
+    to: storage_path('sample.json')
+);
+```
+
+#### Uploading files
+
+```php
+use Nulvem\Remote\Facades\Remote;
+
+$remote = Remote::sftp(host: '0.0.0.0');
+
+$remote->put(from: storage_path('sample.json'));
+```
+
+By default the `/root` path will be used, if you want to use a custom path:
+
+```php
+use Nulvem\Remote\Facades\Remote;
+
+$remote = Remote::sftp(host: '0.0.0.0');
+
+$remote->put(
+    from: storage_path('sample.json'),
+    to: '/var/www/html'
+);
+```
+#### Multiple actions on the same connection
+
+```php
+use Nulvem\Remote\Facades\Remote;
+
+$remote = Remote::sftp(host: '0.0.0.0');
+
+$remote->get(
+    from: '/root/sample.json',
+    to: storage_path('sample.json')
+);
+
+someLogicToChangeSampleFile();
+
+$remote->put(from: storage_path('sample.json'));
+```
+
+#### SFTP output
+
+```php
+$remote = Remote::ssh(host: '0.0.0.0');
+
+$remote->put(from: storage_path('sample.json'));
+
+$execution->success();
+
+$execution->failed();
+```
 
 ## Security
 

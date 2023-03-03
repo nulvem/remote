@@ -5,12 +5,12 @@ namespace Nulvem\Remote\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Nulvem\Remote\Clients\Scp
+ * @see \Nulvem\Remote\Clients\Sftp
  */
-class Scp extends Facade
+class Sftp extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \Nulvem\Remote\Connections\Scp::class;
+        return \Nulvem\Remote\Connections\Sftp::class;
     }
 }

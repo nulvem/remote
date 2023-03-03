@@ -2,16 +2,16 @@
 
 namespace Nulvem\Remote;
 
-use Nulvem\Remote\Connections\Scp;
+use Nulvem\Remote\Connections\Sftp;
 use Nulvem\Remote\Connections\Ssh;
 
 class Remote
 {
-    public function scp(
+    public function sftp(
         string $host,
-    ): Scp
+    ): Sftp
     {
-        return new Scp(
+        return new Sftp(
             host: $host
         );
     }

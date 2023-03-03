@@ -5,12 +5,16 @@ namespace Nulvem\Remote\Connections;
 use Nulvem\Remote\Clients\SshClient;
 use Nulvem\Remote\Clients\Outputs\SshOutput;
 
-class Ssh
+class Ssh extends Connection
 {
     public function __construct(
         private ?string $host = null,
+        private ?SshClient $client = null,
     )
     {
+        $this->client = new SshClient(
+            host: $this->host
+        );
     }
 
     private function compileScript(
@@ -19,15 +23,6 @@ class Ssh
     ): string
     {
         return view()->make($script, $data)->render();
-    }
-
-    public function on(
-        string $host,
-    ): static
-    {
-        $this->host = $host;
-
-        return $this;
     }
 
     public function run(
@@ -40,11 +35,7 @@ class Ssh
             data: $data
         );
 
-        $client = (new SshClient(
-            host: $this->host
-        ));
-
-        return $client->exec(
+        return $this->client->exec(
             script: $script
         );
     }
