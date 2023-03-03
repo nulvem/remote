@@ -10,17 +10,21 @@ use phpseclib3\Net\SSH2;
 class SshClient extends Client
 {
     public function __construct(
-        private string $server,
+        private string $host,
+        private int    $port,
+        private int    $timeout = 0,
         private ?SSH2  $ssh = null,
     )
     {
-        $this->ssh = new SSH2($this->server);
+        $this->ssh = new SSH2(
+            host: $this->host,
+            port: $this->port,
+            timeout: $this->timeout
+        );
 
         $key = RSA::load($this->keyContent());
 
         $this->ssh->login(config('remote.auth.username'), $key);
-
-        $this->ssh->setTimeout(0);
     }
 
     public function exec(
@@ -30,7 +34,7 @@ class SshClient extends Client
         $output = $this->ssh->exec($script);
 
         if ($channel = config('remote.log_channel')) {
-            Log::channel($channel)->info("Output from server: $this->server\n\n$output");
+            Log::channel($channel)->info("Output from host: $this->host\n\n$output");
         }
 
         return new SshOutput(

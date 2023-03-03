@@ -91,9 +91,47 @@ There are two methods of running an SSH script:
 use Nulvem\Remote\Facades\Remote;
 use Nulvem\Remote\Facades\Ssh;
 
-Remote::ssh('0.0.0.0')->run('hello-world');
+Remote::ssh(
+    host: '0.0.0.0'
+)->run(script: 'hello-world');
 
-Ssh::on('0.0.0.0')->run('hello-world');
+Ssh::on(
+    host: '0.0.0.0'
+)->run(script: 'hello-world');
+```
+
+If necessary, it is possible to change the default host port:
+
+```php
+use Nulvem\Remote\Facades\Remote;
+use Nulvem\Remote\Facades\Ssh;
+
+Remote::ssh(
+    host: '0.0.0.0',
+    port: 2000
+)->run(script: 'hello-world');
+
+Ssh::on(
+    host: '0.0.0.0',
+    port: 2000
+)->run(script: 'hello-world');
+```
+
+There is no default timeout, scripts may run forever, if necessary, it is possible to change the default host timeout:
+
+```php
+use Nulvem\Remote\Facades\Remote;
+use Nulvem\Remote\Facades\Ssh;
+
+Remote::ssh(
+    host: '0.0.0.0',
+    timeout: 20
+)->run(script: 'hello-world');
+
+Ssh::on(
+    host: '0.0.0.0',
+    timeout: 20
+)->run(script: 'hello-world');
 ```
 
 If necessary, it is possible to pass any parameters to the SSH script:
@@ -109,17 +147,23 @@ echo "Remote script 'install' finished"
 ```
 
 ```php
-Remote::ssh('0.0.0.0')
-    ->run('hello-world', [
+Remote::ssh(
+    host: '0.0.0.0'
+)->run(
+    script: 'hello-world',
+    data: [
         'name' => 'John Doe',
         'dir' => '/var/www/html'
-    ]);
+    ]
+);
 ```
 
 #### Scripts outputs
 
 ```php
-$connection = Remote::ssh('0.0.0.0')->run('hello-world');
+$connection = Remote::ssh(
+    host: '0.0.0.0'
+)->run(script: 'hello-world');
 
 $connection->output();
 

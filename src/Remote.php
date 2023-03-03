@@ -8,20 +8,20 @@ use Nulvem\Remote\Connections\Ssh;
 class Remote
 {
     public function scp(
-        string $server,
+        string $host,
     ): Scp
     {
         return new Scp(
-            server: $server
+            host: $host
         );
     }
 
     public function ssh(
-        string $server,
+        string $host,
     ): Ssh
     {
         return new Ssh(
-            server: $server
+            host: $host
         );
     }
 }

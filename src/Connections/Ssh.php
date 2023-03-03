@@ -8,7 +8,7 @@ use Nulvem\Remote\Clients\Outputs\SshOutput;
 class Ssh
 {
     public function __construct(
-        private ?string $server = null,
+        private ?string $host = null,
     )
     {
     }
@@ -22,10 +22,10 @@ class Ssh
     }
 
     public function on(
-        string $server,
+        string $host,
     ): static
     {
-        $this->server = $server;
+        $this->host = $host;
 
         return $this;
     }
@@ -41,7 +41,7 @@ class Ssh
         );
 
         $client = (new SshClient(
-            server: $this->server
+            host: $this->host
         ));
 
         return $client->exec(
