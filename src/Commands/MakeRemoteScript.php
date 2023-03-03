@@ -25,14 +25,14 @@ class MakeRemoteScript extends GeneratorCommand
         $rootNamespace
     ): string
     {
-        return $rootNamespace.'\Scripts';
+        return $rootNamespace . '\Scripts';
     }
 
     protected function getPath($name): string
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        return $this->laravel['path'].'/'.str_replace('\\', '/', $name).'.blade.php';
+        return $this->laravel['path'] . '/' . str_replace('\\', '/', $name) . '.blade.php';
     }
 
     protected function getStub(): string

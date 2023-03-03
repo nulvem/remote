@@ -5,7 +5,7 @@ namespace Nulvem\Remote\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \Nulvem\Remote\Clients\Outputs\SshOutput run(string $script, array  $data = [])
+ * @method static \Nulvem\Remote\Clients\Outputs\SshOutput run(string $script, array $data = [])
  */
 class Ssh extends Facade
 {

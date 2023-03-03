@@ -10,7 +10,7 @@ return [
 
     ],
 
-    'scripts_path' => app_path().'/Scripts',
+    'scripts_path' => app_path() . '/Scripts',
 
     'log_channel' => env('REMOTE_LOG_CHANNEL'),
 
