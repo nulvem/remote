@@ -1,6 +1,6 @@
 <?php
 
-namespace Nulvem\Remote\Client;
+namespace Nulvem\Remote\Clients\Outputs;
 
 class SshOutput
 {

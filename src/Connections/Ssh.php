@@ -2,8 +2,8 @@
 
 namespace Nulvem\Remote\Connections;
 
-use Nulvem\Remote\Client\Connection;
-use Nulvem\Remote\Client\SshOutput;
+use Nulvem\Remote\Clients\SshClient;
+use Nulvem\Remote\Clients\Outputs\SshOutput;
 
 class Ssh
 {
@@ -40,7 +40,7 @@ class Ssh
             data: $data
         );
 
-        $client = (new Connection(
+        $client = (new SshClient(
             server: $this->server
         ));
 

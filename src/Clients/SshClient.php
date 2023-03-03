@@ -1,12 +1,13 @@
 <?php
 
-namespace Nulvem\Remote\Client;
+namespace Nulvem\Remote\Clients;
 
 use Illuminate\Support\Facades\Log;
+use Nulvem\Remote\Clients\Outputs\SshOutput;
 use phpseclib3\Crypt\RSA;
 use phpseclib3\Net\SSH2;
 
-class Connection
+class SshClient extends Client
 {
     public function __construct(
         private string $server,
@@ -29,16 +30,11 @@ class Connection
         $output = $this->ssh->exec($script);
 
         if ($channel = config('remote.log_channel')) {
-            Log::channel($channel)->info("Output from ip: $this->server\n\n$output");
+            Log::channel($channel)->info("Output from server: $this->server\n\n$output");
         }
 
         return new SshOutput(
             output: $output
         );
-    }
-
-    private function keyContent(): string
-    {
-        return file_get_contents(config('remote.auth.key_path'));
     }
 }
