@@ -8,12 +8,14 @@ use Nulvem\Remote\Clients\Outputs\SshOutput;
 class Ssh extends Connection
 {
     public function __construct(
-        private ?string $host = null,
+        private ?string    $host = null,
+        private int        $timeout = 0,
         private ?SshClient $client = null,
     )
     {
         $this->client = new SshClient(
-            host: $this->host
+            host: $this->host,
+            timeout: $this->timeout
         );
     }
 

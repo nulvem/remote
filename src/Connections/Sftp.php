@@ -9,12 +9,14 @@ class Sftp extends Connection
 {
     public function __construct(
         private ?string     $host = null,
+        private int         $timeout = 0,
         private bool        $preserveDates = true,
         private ?SftpClient $client = null,
     )
     {
         $this->client = new SftpClient(
             host: $this->host,
+            timeout: $this->timeout,
             preserveDates: $this->preserveDates
         );
     }

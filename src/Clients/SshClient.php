@@ -10,10 +10,10 @@ use phpseclib3\Net\SSH2;
 class SshClient extends Client
 {
     public function __construct(
-        private string $host,
-        private int    $port = 22,
-        private int    $timeout = 0,
-        private ?SSH2  $ssh = null,
+        private readonly string $host,
+        private readonly int    $port = 22,
+        private readonly int    $timeout = 0,
+        private ?SSH2           $ssh = null,
     )
     {
         $this->ssh = new SSH2(

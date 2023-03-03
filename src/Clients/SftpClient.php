@@ -9,11 +9,11 @@ use phpseclib3\Net\SFTP;
 class SftpClient extends Client
 {
     public function __construct(
-        private string $host,
-        private int    $port = 22,
-        private int    $timeout = 0,
-        private bool   $preserveDates = true,
-        private ?SFTP  $sftp = null,
+        private readonly string $host,
+        private readonly int    $port = 22,
+        private readonly int    $timeout = 0,
+        private readonly bool   $preserveDates = true,
+        private ?SFTP           $sftp = null,
     )
     {
         $this->sftp = new SFTP(

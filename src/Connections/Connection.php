@@ -12,4 +12,13 @@ class Connection
 
         return $this;
     }
+
+    public function setTimeout(
+        int $timeout,
+    ): static
+    {
+        $this->timeout = $timeout;
+
+        return $this;
+    }
 }
