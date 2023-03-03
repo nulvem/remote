@@ -220,7 +220,7 @@ $remote->put(from: storage_path('sample.json'));
 ```php
 $remote = Remote::ssh(host: '0.0.0.0');
 
-$remote->put(from: storage_path('sample.json'));
+$execution = $remote->put(from: storage_path('sample.json'));
 
 $execution->success();
 
