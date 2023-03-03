@@ -11,7 +11,7 @@ class SshClient extends Client
 {
     public function __construct(
         private string $host,
-        private int    $port,
+        private int    $port = 22,
         private int    $timeout = 0,
         private ?SSH2  $ssh = null,
     )
