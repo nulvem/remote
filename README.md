@@ -143,6 +143,20 @@ $remote->run(
 )
 ```
 
+#### Multiple actions on the same connection
+
+```php
+use Nulvem\Remote\Facades\Remote;
+
+$remote = Remote::ssh(host: '0.0.0.0');
+
+$remote->run(script: 'install-server');
+
+someLogic();
+
+$remote->run(script: 'configure-server');
+```
+
 #### SSH output
 
 ```php
