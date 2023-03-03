@@ -1,8 +1,9 @@
 {
     "name": "nulvem/remote",
-    "description": "SCP/SSH client library for Laravel",
+    "description": "SFTP/SSH client library for Laravel",
     "keywords": [
         "scp",
+        "sftp",
         "ssh"
     ],
     "license": "MIT",
